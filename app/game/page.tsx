@@ -18,7 +18,7 @@ function Game() {
   const name = p.get('name');
   const characterClass = p.get('class');
 
-  return <GameUI />;
+  return <GameUI characterName={name} characterClass={characterClass} />;
 }
 
 export default function GamePage() {

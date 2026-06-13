@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import AgentPipeline, { Agent } from './AgentPipeline';
 import QuestJournal, { Quest } from './QuestJournal';
 import Dice from './Dice';
@@ -20,7 +20,12 @@ const initialQuests: Quest[] = [
   { name: 'The Missing Artifact', completed: false },
 ];
 
-const GameUI = () => {
+interface GameUIProps {
+  characterName: string | null;
+  characterClass: string | null;
+}
+
+const GameUI = ({ characterName, characterClass }: GameUIProps) => {
   const [agents, setAgents] = useState<Agent[]>(initialAgents);
   const [quests, setQuests] = useState<Quest[]>(initialQuests);
   const [narration, setNarration] = useState('You and your party stand at the entrance of a dark cave, a foul stench emanating from within. A goblin scout spotted you and ran inside, shrieking. What do you do?');
@@ -44,7 +49,6 @@ const GameUI = () => {
     setNarration((prev) => `${prev}\n\n> ${playerInput} (rolled a ${roll})`);
     setPlayerInput('');
 
-    // Reset agent statuses to 'thinking'
     setAgents(initialAgents.map(agent => ({ ...agent, status: 'thinking' })));
 
     try {
@@ -108,6 +112,10 @@ const GameUI = () => {
         </form>
       </div>
       <div style={{ flex: '0 0 250px', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="text-center mb-4">
+          <h3 className="text-2xl font-bold text-purple-400">{characterName}</h3>
+          <p className="text-lg text-gray-400">{characterClass ? characterClass.charAt(0).toUpperCase() + characterClass.slice(1) : ''}</p>
+        </div>
         <div style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>HP: {health}</div>
         <Dice roll={diceRoll} />
       </div>
