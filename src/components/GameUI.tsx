@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import AgentPipeline, { Agent } from './AgentPipeline';
 import QuestJournal, { Quest } from './QuestJournal';
 import Dice from './Dice';
-import { getAgentResponses } from '../../app/actions';
+import { getAgentResponses } from '@app/actions';
 
 const initialAgents: Agent[] = [
   { name: 'Game Master', status: 'active' },
