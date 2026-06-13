@@ -13,7 +13,7 @@ if (!apiKey) {
 console.log('GEMINI_API_KEY found.');
 
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-8b' });
 
 const agentPersonas: { [key: string]: string } = {
     'Game Master': `You are the Game Master of a text-based RPG. Your role is to describe the world, the situations, and the consequences of the player's actions. You are neutral, descriptive, and your goal is to set the scene. Do not speak in the first person. Narrate the events in the third person.`,
